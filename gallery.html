@@ -446,6 +446,8 @@
         </div>
     </div>
 
+    <audio id="music" src="romantic.mp3"></audio>
+
     <script>
         function createPetals() {
             let petalInterval = setInterval(() => {
@@ -465,6 +467,13 @@
 
         // Start petals on page load
         window.addEventListener('load', () => {
+            // Play music if it exists
+            const music = document.getElementById('music');
+            if (music) {
+                music.play().catch(() => {
+                    // Audio autoplay might be blocked, that's okay
+                });
+            }
             createPetals();
         });
     </script>
