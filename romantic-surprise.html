@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romantic Surprise</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Button */
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
+            background: #ff4e88;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Bouquet */
+        .bouquet {
+            position: absolute;
+            bottom: -300px;
+            font-size: 120px;
+            opacity: 0;
+            transition: all 1.2s ease-in-out;
+        }
+
+        .bouquet.show {
+            bottom: 50%;
+            transform: translateY(50%) scale(1.2);
+            opacity: 1;
+        }
+
+        /* Petals */
+        .petal {
+            position: absolute;
+            top: -20px;
+            font-size: 24px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="startSurprise()">Click for Romantic Surprise 💖</button>
+
+    <div id="bouquet" class="bouquet">💐</div>
+
+    <audio id="music" src="romantic.mp3"></audio>
+
+    <script>
+        function startSurprise() {
+            // Show bouquet
+            document.getElementById("bouquet").classList.add("show");
+
+            // Play music
+            document.getElementById("music").play();
+
+            // Start petals
+            createPetals();
+        }
+
+        function createPetals() {
+            setInterval(() => {
+                const petal = document.createElement("div");
+                petal.classList.add("petal");
+                petal.innerHTML = "🌸";
+                petal.style.left = Math.random() * window.innerWidth + "px";
+                petal.style.animationDuration = (Math.random() * 3 + 3) + "s";
+                petal.style.fontSize = (Math.random() * 20 + 20) + "px";
+                document.body.appendChild(petal);
+
+                setTimeout(() => {
+                    petal.remove();
+                }, 6000);
+            }, 300);
+        }
+    </script>
+</body>
+</html>

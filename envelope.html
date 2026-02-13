@@ -231,6 +231,26 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
+        /* Petals */
+        .petal {
+            position: fixed;
+            top: -20px;
+            font-size: 24px;
+            animation: fall linear infinite;
+            z-index: 150;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0.8;
+            }
+        }
+
         /* Responsive design */
         @media (max-width: 600px) {
             .envelope {
@@ -271,6 +291,8 @@
         </div>
     </div>
 
+    <audio id="music" src="romantic.mp3"></audio>
+
     <script>
         function openEnvelope() {
             // Hide envelope
@@ -280,10 +302,92 @@
             const flowersTransition = document.getElementById('flowersTransition');
             flowersTransition.classList.add('active');
             
-            // After 2.5 seconds, redirect to letter
+            // Play music
+            document.getElementById('music').play();
+            
+            // Start petals
+            createPetals();
+            
+            // After 2.5 seconds, load the letter
             setTimeout(() => {
-                window.location.href = 'index.html';
+                loadLetter();
             }, 2500);
+        }
+
+        function loadLetter() {
+            const flowersTransition = document.getElementById('flowersTransition');
+            flowersTransition.classList.remove('active');
+            
+            fetch('index.html')
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const letterContent = doc.querySelector('.letter-container');
+                    
+                    if (letterContent) {
+                        const envelope = document.getElementById('envelopeContainer');
+                        letterContent.classList.add('visible');
+                        envelope.parentNode.replaceChild(letterContent.cloneNode(true), envelope);
+                        
+                        const galleryBtn = document.querySelector('.footer-button');
+                        if (galleryBtn) {
+                            galleryBtn.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                loadGallery();
+                            });
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.log('Error loading letter:', err);
+                    window.location.href = 'index.html';
+                });
+        }
+
+        function loadGallery() {
+            const music = document.getElementById('music');
+            fetch('gallery.html')
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const galleryContainer = doc.querySelector('.gallery-container');
+                    
+                    if (galleryContainer) {
+                        document.body.innerHTML = '';
+                        document.body.appendChild(music);
+                        document.body.appendChild(galleryContainer.cloneNode(true));
+                        
+                        const backBtn = document.querySelector('.back-button');
+                        if (backBtn) {
+                            backBtn.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                location.reload();
+                            });
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.log('Error loading gallery:', err);
+                    window.location.href = 'gallery.html';
+                });
+        }
+
+        function createPetals() {
+            setInterval(() => {
+                const petal = document.createElement("div");
+                petal.classList.add("petal");
+                petal.innerHTML = "🌸";
+                petal.style.left = Math.random() * window.innerWidth + "px";
+                petal.style.animationDuration = (Math.random() * 3 + 3) + "s";
+                petal.style.fontSize = (Math.random() * 20 + 20) + "px";
+                document.body.appendChild(petal);
+
+                setTimeout(() => {
+                    petal.remove();
+                }, 6000);
+            }, 300);
         }
     </script>
 </body>

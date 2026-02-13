@@ -231,6 +231,26 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
+        /* Petals */
+        .petal {
+            position: fixed;
+            top: -20px;
+            font-size: 24px;
+            animation: fall linear infinite;
+            z-index: 150;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0.8;
+            }
+        }
+
         /* Letter Container */
         .letter-container {
             opacity: 0;
@@ -648,5 +668,71 @@
             </div>
         </div>
     </div>
+
+    <audio id="music" src="romantic.mp3"></audio>
+
+    <script>
+        function createPetals() {
+            let petalInterval = setInterval(() => {
+                const petal = document.createElement("div");
+                petal.classList.add("petal");
+                petal.innerHTML = "🌸";
+                petal.style.left = Math.random() * window.innerWidth + "px";
+                petal.style.animationDuration = (Math.random() * 3 + 3) + "s";
+                petal.style.fontSize = (Math.random() * 20 + 20) + "px";
+                document.body.appendChild(petal);
+
+                setTimeout(() => {
+                    petal.remove();
+                }, 6000);
+            }, 300);
+        }
+
+        // Start petals and music on page load
+        window.addEventListener('load', () => {
+            document.getElementById('music').play().catch(() => {
+                // Audio autoplay might be blocked, that's okay
+            });
+            createPetals();
+            
+            // Handle gallery button
+            const galleryBtn = document.querySelector('.footer-button');
+            if (galleryBtn) {
+                galleryBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    loadGallery();
+                });
+            }
+        });
+
+        function loadGallery() {
+            const music = document.getElementById('music');
+            fetch('gallery.html')
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const galleryContainer = doc.querySelector('.gallery-container');
+                    
+                    if (galleryContainer) {
+                        document.body.innerHTML = '';
+                        document.body.appendChild(music);
+                        document.body.appendChild(galleryContainer.cloneNode(true));
+                        
+                        const backBtn = document.querySelector('.back-button');
+                        if (backBtn) {
+                            backBtn.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                location.reload();
+                            });
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.log('Error loading gallery:', err);
+                    window.location.href = 'gallery.html';
+                });
+        }
+    </script>
 </body>
 </html>
