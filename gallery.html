@@ -542,6 +542,15 @@
                 });
             }
             createPetals();
+            
+            // Handle back button
+            const backBtn = document.querySelector('.back-button');
+            if (backBtn) {
+                backBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = 'index.html';
+                });
+            }
         });
     </script>
 </body>
