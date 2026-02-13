@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Valentine Letter 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .heart {
+            font-size: 50px;
+            margin-bottom: 10px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .content {
+            padding: 40px;
+            line-height: 1.8;
+        }
+
+        .letter-text {
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .letter-text p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            text-align: justify;
+        }
+
+        .highlight {
+            color: #ff6b9d;
+            font-weight: bold;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 30px;
+            font-size: 18px;
+            font-style: italic;
+            color: #764ba2;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            text-align: center;
+            border-top: 2px solid #ff6b9d;
+        }
+
+        .decorative-hearts {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 24px;
+            margin: 20px 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .footer-text {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .letter-text p {
+                font-size: 15px;
+            }
+
+            .heart {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="heart">💕</div>
+            <h1>Happy Valentine's Day</h1>
+            <p>To My Dearest</p>
+        </div>
+
+        <div class="content">
+            <div class="letter-text">
+                <p>
+                    My dearest,
+                </p>
+                <p>
+                    As I sit down to write this letter on this special day, my heart is overflowing with gratitude 
+                    for having you in my life. You are my sunshine on the darkest days, my smile when everything 
+                    seems to be falling apart, and my greatest source of joy.
+                </p>
+                <p>
+                    Every moment spent with you feels like a beautiful dream that I never want to wake up from. 
+                    Your laugh is the sweetest melody, your kindness is an inspiration, and your presence is 
+                    everything I could have ever asked for. The way you light up the room with your smile makes 
+                    everything around us seem brighter and more beautiful.
+                </p>
+                <p>
+                    I want you to know that you are <span class="highlight">not just my love, but my best friend, 
+                    my confidant, and my forever companion</span>. With you, I've discovered a love that's pure, 
+                    honest, and true—a love that grows stronger with each passing day.
+                </p>
+                <p>
+                    Thank you for being patient with me, for believing in me even when I didn't believe in myself, 
+                    and for choosing to walk this beautiful journey of life with me. Every day with you is a gift, 
+                    and I promise to cherish it always.
+                </p>
+                <p>
+                    I love you more than words could ever express. You are my today and all my tomorrows.
+                </p>
+
+                <div class="decorative-hearts">
+                    <span>❤️</span>
+                    <span>💕</span>
+                    <span>💖</span>
+                </div>
+
+                <div class="signature">
+                    Forever yours,<br>
+                    <span style="font-size: 20px;">Your Love ✨</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p class="footer-text">
+                Made with love on Valentine's Day, February 14th, 2026 💌
+            </p>
+        </div>
+    </div>
+</body>
+</html>
