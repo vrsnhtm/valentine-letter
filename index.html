@@ -757,7 +757,7 @@
             let petalInterval = setInterval(() => {
                 const petal = document.createElement("div");
                 petal.classList.add("petal");
-                petal.innerHTML = "🌸";
+                petal.innerHTML = "🌻";
                 petal.style.left = Math.random() * window.innerWidth + "px";
                 petal.style.animationDuration = (Math.random() * 3 + 3) + "s";
                 petal.style.fontSize = (Math.random() * 20 + 20) + "px";
@@ -775,20 +775,7 @@
                 // Audio autoplay might be blocked, that's okay
             });
             createPetals();
-            
-            // Handle gallery button
-            const galleryBtn = document.querySelector('.footer-button');
-            if (galleryBtn) {
-                galleryBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    loadGallery();
-                });
-            }
         });
-
-        function loadGallery() {
-            window.location.href = 'gallery.html';
-        }
     </script>
 </body>
 </html>
