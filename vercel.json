@@ -6,11 +6,6 @@
       "source": "/",
       "destination": "/envelope.html",
       "permanent": false
-    },
-    {
-      "source": "/index.html",
-      "destination": "/envelope.html",
-      "permanent": false
     }
   ]
 }
