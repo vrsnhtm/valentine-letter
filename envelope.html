@@ -368,31 +368,8 @@
             const flowersTransition = document.getElementById('flowersTransition');
             flowersTransition.classList.remove('active');
             
-            fetch('index.html')
-                .then(response => response.text())
-                .then(html => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    const letterContent = doc.querySelector('.letter-container');
-                    
-                    if (letterContent) {
-                        const envelope = document.getElementById('envelopeContainer');
-                        letterContent.classList.add('visible');
-                        envelope.parentNode.replaceChild(letterContent.cloneNode(true), envelope);
-                        
-                        const galleryBtn = document.querySelector('.footer-button');
-                        if (galleryBtn) {
-                            galleryBtn.addEventListener('click', function(e) {
-                                e.preventDefault();
-                                loadGallery();
-                            });
-                        }
-                    }
-                })
-                .catch(err => {
-                    console.log('Error loading letter:', err);
-                    window.location.href = 'index.html';
-                });
+            // Navigate to index.html
+            window.location.href = 'index.html';
         }
 
         function loadGallery() {

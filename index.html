@@ -787,32 +787,7 @@
         });
 
         function loadGallery() {
-            const music = document.getElementById('music');
-            fetch('gallery.html')
-                .then(response => response.text())
-                .then(html => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    const galleryContainer = doc.querySelector('.gallery-container');
-                    
-                    if (galleryContainer) {
-                        document.body.innerHTML = '';
-                        document.body.appendChild(music);
-                        document.body.appendChild(galleryContainer.cloneNode(true));
-                        
-                        const backBtn = document.querySelector('.back-button');
-                        if (backBtn) {
-                            backBtn.addEventListener('click', function(e) {
-                                e.preventDefault();
-                                location.reload();
-                            });
-                        }
-                    }
-                })
-                .catch(err => {
-                    console.log('Error loading gallery:', err);
-                    window.location.href = 'gallery.html';
-                });
+            window.location.href = 'gallery.html';
         }
     </script>
 </body>
