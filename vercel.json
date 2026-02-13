@@ -1,10 +1,16 @@
 {
   "buildCommand": "echo 'Build completed'",
   "outputDirectory": ".",
-  "rewrites": [
+  "redirects": [
     {
       "source": "/",
-      "destination": "/envelope.html"
+      "destination": "/envelope.html",
+      "permanent": false
+    },
+    {
+      "source": "/index.html",
+      "destination": "/envelope.html",
+      "permanent": false
     }
   ]
 }
