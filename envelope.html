@@ -252,13 +252,36 @@
         }
 
         /* Responsive design */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .envelope-wrapper {
+                max-width: 100%;
+                width: 95%;
+            }
+
             .envelope {
-                padding: 25px;
+                padding: 40px 25px;
+                border: 2px solid #8B6914;
+            }
+
+            .envelope-flap {
+                height: 80px;
+                margin-bottom: 15px;
+            }
+
+            .envelope-flap::after {
+                font-size: 30px;
             }
 
             .envelope-label {
                 font-size: 24px;
+            }
+
+            .click-instruction {
+                font-size: 12px;
             }
 
             .flowers {
@@ -266,7 +289,34 @@
             }
 
             .flowers-text {
+                font-size: 18px;
+            }
+
+            .petal {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .envelope-wrapper {
+                max-width: 100%;
+            }
+
+            .envelope {
+                padding: 30px 15px;
+                border: 2px solid #8B6914;
+            }
+
+            .envelope-label {
                 font-size: 20px;
+            }
+
+            .flowers {
+                font-size: 50px;
+            }
+
+            .flowers-text {
+                font-size: 16px;
             }
         }
     </style>
