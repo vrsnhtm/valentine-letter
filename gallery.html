@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Photo Gallery 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier Prime', monospace;
+            background: linear-gradient(135deg, #8B7355 0%, #D2B48C 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0,0,0,.05) 2px,
+                    rgba(0,0,0,.05) 4px
+                );
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gallery-header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 48px;
+            color: #8B4513;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .gallery-header p {
+            font-size: 18px;
+            color: #6B3410;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .filmstrip {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .photo-film {
+            background: white;
+            border: 8px solid #333;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 0 0 1px #666;
+            position: relative;
+            overflow: hidden;
+            transform: rotate(-1.5deg);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            width: 280px;
+            height: 280px;
+        }
+
+        .photo-film::before,
+        .photo-film::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: repeating-linear-gradient(
+                90deg,
+                #333 0px,
+                #333 15px,
+                transparent 15px,
+                transparent 20px
+            );
+            z-index: 10;
+        }
+
+        .photo-film::before {
+            top: 0;
+        }
+
+        .photo-film::after {
+            bottom: 0;
+        }
+
+        .photo-film:nth-child(2) {
+            transform: rotate(0.5deg) scale(1.05);
+            z-index: 10;
+        }
+
+        .photo-film:nth-child(3) {
+            transform: rotate(1.2deg);
+        }
+
+        .photo-film:hover {
+            transform: rotate(0deg) scale(1.1);
+            z-index: 20;
+            box-shadow: 
+                0 12px 48px rgba(0, 0, 0, 0.4),
+                inset 0 0 0 1px #666;
+        }
+
+        .photo-film img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-number {
+            position: absolute;
+            bottom: 5px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 2px 6px;
+            font-size: 12px;
+            border-radius: 2px;
+            z-index: 15;
+            font-weight: bold;
+        }
+
+        .back-button-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .back-button {
+            background: linear-gradient(135deg, #8B4513 0%, #6B3410 100%);
+            color: #F5DEB3;
+            border: 2px solid #8B6914;
+            padding: 12px 40px;
+            font-size: 16px;
+            font-family: 'Great Vibes', cursive;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #6B3410 0%, #4A2308 100%);
+        }
+
+        .back-button:active {
+            transform: translateY(0);
+        }
+
+        .decorative-text {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #6B3410;
+            letter-spacing: 2px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .gallery-header h1 {
+                font-size: 32px;
+            }
+
+            .filmstrip {
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .photo-film {
+                width: 200px;
+                height: 200px;
+            }
+
+            .photo-film:nth-child(2) {
+                transform: rotate(0.5deg) scale(1);
+            }
+
+            .photo-film:hover {
+                transform: rotate(0deg) scale(1.05);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <div class="gallery-header">
+            <h1>Our Beautiful Memories</h1>
+            <p>A collection of moments we treasure ❤️</p>
+        </div>
+
+        <div class="filmstrip">
+            <div class="photo-film">
+                <img src="photo1.jpg" alt="Memory 1">
+                <div class="photo-number">01</div>
+            </div>
+            <div class="photo-film">
+                <img src="photo2.jpg" alt="Memory 2">
+                <div class="photo-number">02</div>
+            </div>
+            <div class="photo-film">
+                <img src="photo3.jpg" alt="Memory 3">
+                <div class="photo-number">03</div>
+            </div>
+        </div>
+
+        <div class="back-button-container">
+            <a href="index.html" class="back-button">Back to Letter</a>
+        </div>
+
+        <div class="decorative-text">
+            ✧ Forever captured in time ✧
+        </div>
+    </div>
+</body>
+</html>

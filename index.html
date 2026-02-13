@@ -249,9 +249,9 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 100%;
             width: 100%;
-            background: linear-gradient(135deg, rgba(245, 222, 179, 0.95) 0%, rgba(255, 248, 220, 0.95) 100%), url('photo1.jpg');
+            background: linear-gradient(135deg, rgba(245, 222, 179, 0.7) 0%, rgba(255, 248, 220, 0.7) 100%), url('photo1.jpg');
             background-size: cover, cover;
             background-attachment: fixed, fixed;
             background-position: center, center;
@@ -259,11 +259,14 @@
             box-shadow: 
                 0 0 0 1px #D2B48C,
                 0 20px 80px rgba(0, 0, 0, 0.5),
-                inset 0 0 0 20px rgba(255, 255, 255, 0.3);
+                inset 0 0 0 20px rgba(255, 255, 255, 0.2);
             overflow: hidden;
             animation: slideIn 0.8s ease-out;
             position: relative;
             margin: auto;
+            max-width: 85%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .container::before {
@@ -479,11 +482,29 @@
             margin: 20px 0;
         }
 
-        .wax-seal {
-            text-align: center;
-            font-size: 50px;
-            margin: 20px 0;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        .footer-button {
+            background: linear-gradient(135deg, #FF6B9D 0%, #C44569 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 14px;
+            font-family: 'Great Vibes', cursive;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin-top: 15px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .footer-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .footer-button:active {
+            transform: scale(0.98);
         }
 
         /* Responsive design */
@@ -556,27 +577,8 @@
     </style>
 </head>
 <body>
-    <!-- Flowers Transition -->
-    <div class="flowers-transition" id="flowersTransition">
-        <div class="flowers-container">
-            <div class="flowers">🌹🌻🌹</div>
-            <div class="flowers-text">Open your love letter...</div>
-        </div>
-    </div>
-
-    <!-- Envelope Container -->
-    <div class="envelope-container" id="envelopeContainer">
-        <div class="envelope-wrapper">
-            <div class="envelope" onclick="openEnvelope()">
-                <div class="envelope-flap"></div>
-                <div class="envelope-label">Click Me</div>
-                <div class="click-instruction">💌 Open your Valentine's Day surprise 💌</div>
-            </div>
-        </div>
-    </div>
-
     <!-- Letter Container -->
-    <div class="letter-container" id="letterContainer">
+    <div class="letter-container visible" id="letterContainer">
         <div class="container">
             <div class="header">
                 <div class="heart">💕</div>
@@ -642,25 +644,9 @@
                 <p class="footer-text">
                     Written with love and delivered straight from my heart 💌
                 </p>
+                <a href="gallery.html" class="footer-button">Click Me - View Our Photos</a>
             </div>
         </div>
     </div>
-
-    <script>
-        function openEnvelope() {
-            // Hide envelope
-            document.getElementById('envelopeContainer').classList.add('hidden');
-            
-            // Show flowers transition
-            const flowersTransition = document.getElementById('flowersTransition');
-            flowersTransition.classList.add('active');
-            
-            // After 2.5 seconds, show letter and hide flowers
-            setTimeout(() => {
-                flowersTransition.classList.remove('active');
-                document.getElementById('letterContainer').classList.add('visible');
-            }, 2500);
-        }
-    </script>
 </body>
 </html>
