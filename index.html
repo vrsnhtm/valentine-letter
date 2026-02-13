@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Valentine Letter 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,22 +13,64 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Courier Prime', monospace;
+            background: linear-gradient(135deg, #8B7355 0%, #D2B48C 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0,0,0,.05) 2px,
+                    rgba(0,0,0,.05) 4px
+                );
+            pointer-events: none;
+            z-index: -1;
         }
 
         .container {
-            max-width: 700px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            background: linear-gradient(135deg, #F5DEB3 0%, #FFF8DC 100%);
+            border: 3px solid #8B6914;
+            box-shadow: 
+                0 0 0 1px #D2B48C,
+                0 20px 80px rgba(0, 0, 0, 0.5),
+                inset 0 0 0 20px rgba(255, 255, 255, 0.3);
             overflow: hidden;
             animation: slideIn 0.8s ease-out;
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 105, 20, 0.03) 2px,
+                    rgba(139, 105, 20, 0.03) 4px
+                );
+            pointer-events: none;
         }
 
         @keyframes slideIn {
@@ -42,14 +85,24 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
-            padding: 40px 30px;
+            background: #8B4513;
+            padding: 30px;
             text-align: center;
-            color: white;
+            color: #F5DEB3;
+            border-bottom: 2px dashed #8B6914;
+            position: relative;
+        }
+
+        .header::after {
+            content: '✦ ✦ ✦';
+            display: block;
+            margin-top: 10px;
+            letter-spacing: 10px;
+            font-size: 12px;
         }
 
         .heart {
-            font-size: 50px;
+            font-size: 40px;
             margin-bottom: 10px;
             animation: heartbeat 1.5s ease-in-out infinite;
         }
@@ -67,92 +120,210 @@
         }
 
         .header h1 {
-            font-size: 32px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 44px;
             margin-bottom: 5px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            color: #FFD700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         .header p {
-            font-size: 16px;
-            opacity: 0.9;
+            font-size: 14px;
+            opacity: 0.95;
             font-style: italic;
+            letter-spacing: 3px;
         }
 
         .content {
-            padding: 40px;
-            line-height: 1.8;
+            padding: 50px 40px;
+            line-height: 2;
+            position: relative;
+            z-index: 1;
+        }
+
+        .photos-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: 50px 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #8B6914;
+            border-radius: 5px;
+        }
+
+        .photo-frame {
+            background: #F5DEB3;
+            border: 12px solid #8B6914;
+            border-bottom-width: 18px;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.4),
+                inset 0 0 0 1px #D2B48C;
+            transform: rotate(-1.5deg);
+            transition: all 0.4s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .photo-frame:nth-child(2) {
+            transform: rotate(1.8deg);
+            margin-left: 20px;
+        }
+
+        .photo-frame:nth-child(3) {
+            transform: rotate(-0.8deg);
+            margin-left: -15px;
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.02);
+            z-index: 10;
+            box-shadow: 
+                0 12px 35px rgba(0, 0, 0, 0.5),
+                inset 0 0 0 1px #D2B48C;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            min-height: 300px;
         }
 
         .letter-text {
-            color: #333;
+            color: #3E2723;
             margin-bottom: 25px;
+            font-size: 16px;
         }
 
         .letter-text p {
-            margin-bottom: 15px;
-            font-size: 16px;
-            text-align: justify;
+            margin-bottom: 20px;
+            text-align: left;
+            font-family: 'Courier Prime', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .salutation {
+            font-family: 'Great Vibes', cursive;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #8B4513;
         }
 
         .highlight {
-            color: #ff6b9d;
+            color: #8B4513;
             font-weight: bold;
+            text-decoration: underline;
         }
 
         .signature {
             text-align: right;
-            margin-top: 30px;
+            margin-top: 40px;
             font-size: 18px;
-            font-style: italic;
-            color: #764ba2;
+            font-family: 'Great Vibes', cursive;
+            color: #8B4513;
+        }
+
+        .signature-line {
+            margin-top: 10px;
+            font-size: 12px;
+            font-family: 'Courier Prime', monospace;
+            letter-spacing: 1px;
         }
 
         .footer {
-            background: #f8f9fa;
+            background: #8B4513;
             padding: 20px 30px;
             text-align: center;
-            border-top: 2px solid #ff6b9d;
+            border-top: 2px dashed #8B6914;
+            position: relative;
         }
 
-        .decorative-hearts {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            font-size: 24px;
-            margin: 20px 0;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        .footer::before {
+            content: '✦ ✦ ✦';
+            display: block;
+            margin-bottom: 10px;
+            letter-spacing: 10px;
+            font-size: 12px;
+            color: #F5DEB3;
         }
 
         .footer-text {
-            color: #666;
-            font-size: 14px;
+            color: #F5DEB3;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .decorative-line {
+            height: 2px;
+            background: repeating-linear-gradient(
+                90deg,
+                #8B6914 0px,
+                #8B6914 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            margin: 20px 0;
+        }
+
+        .wax-seal {
+            text-align: center;
+            font-size: 50px;
+            margin: 20px 0;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
         }
 
         /* Responsive design */
         @media (max-width: 600px) {
             .header h1 {
-                font-size: 24px;
+                font-size: 32px;
             }
 
             .content {
-                padding: 25px;
+                padding: 25px 20px;
+                line-height: 1.8;
+            }
+
+            .letter-text {
+                font-size: 14px;
             }
 
             .letter-text p {
-                font-size: 15px;
+                margin-bottom: 15px;
             }
 
             .heart {
-                font-size: 40px;
+                font-size: 30px;
+            }
+
+            .photos-gallery {
+                flex-direction: column;
+                padding: 20px;
+                gap: 25px;
+                margin: 40px 0;
+            }
+
+            .photo-frame {
+                border: 10px solid #8B6914;
+                border-bottom-width: 15px;
+            }
+
+            .photo-frame:nth-child(2) {
+                margin-left: 10px;
+            }
+
+            .photo-frame:nth-child(3) {
+                margin-left: -8px;
+            }
+
+            .photo-frame img {
+                min-height: 250px;
+            }
+
+            .signature {
+                font-size: 16px;
             }
         }
     </style>
@@ -162,55 +333,66 @@
         <div class="header">
             <div class="heart">💕</div>
             <h1>Happy Valentine's Day</h1>
-            <p>To My Dearest</p>
+            <p>To My Beautiful Wife</p>
         </div>
 
         <div class="content">
             <div class="letter-text">
+                <div class="salutation">Hi Mahal,</div>
+
+                <div class="decorative-line"></div>
+
                 <p>
-                    My dearest,
-                </p>
-                <p>
-                    As I sit down to write this letter on this special day, my heart is overflowing with gratitude 
-                    for having you in my life. You are my sunshine on the darkest days, my smile when everything 
-                    seems to be falling apart, and my greatest source of joy.
-                </p>
-                <p>
-                    Every moment spent with you feels like a beautiful dream that I never want to wake up from. 
-                    Your laugh is the sweetest melody, your kindness is an inspiration, and your presence is 
-                    everything I could have ever asked for. The way you light up the room with your smile makes 
-                    everything around us seem brighter and more beautiful.
-                </p>
-                <p>
-                    I want you to know that you are <span class="highlight">not just my love, but my best friend, 
-                    my confidant, and my forever companion</span>. With you, I've discovered a love that's pure, 
-                    honest, and true—a love that grows stronger with each passing day.
-                </p>
-                <p>
-                    Thank you for being patient with me, for believing in me even when I didn't believe in myself, 
-                    and for choosing to walk this beautiful journey of life with me. Every day with you is a gift, 
-                    and I promise to cherish it always.
-                </p>
-                <p>
-                    I love you more than words could ever express. You are my today and all my tomorrows.
+                    Happy Valentine's Day ❤️
                 </p>
 
-                <div class="decorative-hearts">
-                    <span>❤️</span>
-                    <span>💕</span>
-                    <span>💖</span>
+                <p>
+                    I want you to know how truly thankful I am to have a wife like you. I am so lucky to have you in my life, and I'm especially grateful for the patience you've shown me, even with everything from my past. I don't know how I can ever repay you for all the things you've done for me. All I know right now is that I am ready to be your husband as soon as possible. I want to marry you and spend the rest of my life by your side.
+                </p>
+
+                <p>
+                    We've faced so many problems together, but no matter what, we always find a way to fix them. That's what makes our love so strong. My heart feels so full because I have you. I love you more than I could ever properly put into words. You are my sunshine on the darkest days, my comfort when everything feels like it's falling apart, and the biggest reason behind my smile.
+                </p>
+
+                <div class="photos-gallery">
+                    <div class="photo-frame">
+                        <img src="photo1.jpg" alt="Our memories together">
+                    </div>
+                    <div class="photo-frame">
+                        <img src="photo2.jpg" alt="Our beautiful moments">
+                    </div>
+                    <div class="photo-frame">
+                        <img src="photo3.jpg" alt="Us forever">
+                    </div>
                 </div>
 
+                <p>
+                    You're not just my love, you're my safe place, my person. You're the one I want to tell everything to, the one I want to hold at the end of every long day, and the one I want beside me in every chapter of my life. With you, I've found a love that is pure, honest, and grows deeper and stronger every single day.
+                </p>
+
+                <p>
+                    Thank you for being patient with me, for believing in me when I struggle to believe in myself, and for loving me the way you do. I am so incredibly lucky to have you. I choose you every day, and I will keep choosing you over and over again.
+                </p>
+
+                <p>
+                    I love you endlessly. You are my today, my tomorrow, and every beautiful moment in between. Please stay close to me always—I can't imagine this life without you. ❤️
+                </p>
+
+                <div class="decorative-line"></div>
+
+                <div class="wax-seal">❤️</div>
+
                 <div class="signature">
-                    Forever yours,<br>
-                    <span style="font-size: 20px;">Your Love ✨</span>
+                    Your Love,
+                    <div class="signature-line">Your i3 still loving you always</div>
+                    <div class="signature-line">✧ Valentine's Day, 2026 ✧</div>
                 </div>
             </div>
         </div>
 
         <div class="footer">
             <p class="footer-text">
-                Made with love on Valentine's Day, February 14th, 2026 💌
+                Written with love and delivered straight from my heart 💌
             </p>
         </div>
     </div>
