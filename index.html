@@ -42,6 +42,168 @@
             z-index: -1;
         }
 
+        /* Envelope Styles */
+        .envelope-container {
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+            z-index: 100;
+        }
+
+        .envelope-container.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .envelope-wrapper {
+            perspective: 1000px;
+            max-width: 400px;
+        }
+
+        .envelope {
+            background: linear-gradient(135deg, #F5DEB3 0%, #FFF8DC 100%);
+            border: 3px solid #8B6914;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 105, 20, 0.03) 2px,
+                    rgba(139, 105, 20, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+
+        .envelope:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .envelope-flap {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(135deg, #D2B48C 0%, #C19A6B 100%);
+            border: 2px solid #8B6914;
+            border-radius: 50% 50% 0 0;
+            margin-bottom: 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .envelope-flap::after {
+            content: '❤️';
+            font-size: 40px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .envelope-label {
+            font-family: 'Great Vibes', cursive;
+            font-size: 32px;
+            color: #8B4513;
+            margin: 20px 0;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .click-instruction {
+            font-size: 14px;
+            color: #666;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        /* Flowers Transition */
+        .flowers-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .flowers-transition.active {
+            opacity: 1;
+        }
+
+        .flowers-container {
+            text-align: center;
+            animation: flowersAppear 2s ease-out forwards;
+        }
+
+        @keyframes flowersAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(-180deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .flowers {
+            font-size: 80px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+        }
+
+        .flowers-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 28px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* Letter Container */
+        .letter-container {
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+            pointer-events: none;
+        }
+
+        .letter-container.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
         .container {
             max-width: 800px;
             background: linear-gradient(135deg, #F5DEB3 0%, #FFF8DC 100%);
@@ -325,76 +487,131 @@
             .signature {
                 font-size: 16px;
             }
+
+            .envelope {
+                padding: 25px;
+            }
+
+            .envelope-label {
+                font-size: 24px;
+            }
+
+            .flowers {
+                font-size: 60px;
+            }
+
+            .flowers-text {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="heart">💕</div>
-            <h1>Happy Valentine's Day</h1>
-            <p>To My Beautiful Wife</p>
-        </div>
-
-        <div class="content">
-            <div class="letter-text">
-                <div class="salutation">Hi Mahal,</div>
-
-                <div class="decorative-line"></div>
-
-                <p>
-                    Happy Valentine's Day ❤️
-                </p>
-
-                <p>
-                    I want you to know how truly thankful I am to have a wife like you. I am so lucky to have you in my life, and I'm especially grateful for the patience you've shown me, even with everything from my past. I don't know how I can ever repay you for all the things you've done for me. All I know right now is that I am ready to be your husband as soon as possible. I want to marry you and spend the rest of my life by your side.
-                </p>
-
-                <p>
-                    We've faced so many problems together, but no matter what, we always find a way to fix them. That's what makes our love so strong. My heart feels so full because I have you. I love you more than I could ever properly put into words. You are my sunshine on the darkest days, my comfort when everything feels like it's falling apart, and the biggest reason behind my smile.
-                </p>
-
-                <div class="photos-gallery">
-                    <div class="photo-frame">
-                        <img src="photo1.jpg" alt="Our memories together">
-                    </div>
-                    <div class="photo-frame">
-                        <img src="photo2.jpg" alt="Our beautiful moments">
-                    </div>
-                    <div class="photo-frame">
-                        <img src="photo3.jpg" alt="Us forever">
-                    </div>
-                </div>
-
-                <p>
-                    You're not just my love, you're my safe place, my person. You're the one I want to tell everything to, the one I want to hold at the end of every long day, and the one I want beside me in every chapter of my life. With you, I've found a love that is pure, honest, and grows deeper and stronger every single day.
-                </p>
-
-                <p>
-                    Thank you for being patient with me, for believing in me when I struggle to believe in myself, and for loving me the way you do. I am so incredibly lucky to have you. I choose you every day, and I will keep choosing you over and over again.
-                </p>
-
-                <p>
-                    I love you endlessly. You are my today, my tomorrow, and every beautiful moment in between. Please stay close to me always—I can't imagine this life without you. ❤️
-                </p>
-
-                <div class="decorative-line"></div>
-
-                <div class="wax-seal">❤️</div>
-
-                <div class="signature">
-                    Your Love,
-                    <div class="signature-line">Your i3 still loving you always</div>
-                    <div class="signature-line">✧ Valentine's Day, 2026 ✧</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p class="footer-text">
-                Written with love and delivered straight from my heart 💌
-            </p>
+    <!-- Flowers Transition -->
+    <div class="flowers-transition" id="flowersTransition">
+        <div class="flowers-container">
+            <div class="flowers">🌹🌻🌹</div>
+            <div class="flowers-text">Open your love letter...</div>
         </div>
     </div>
+
+    <!-- Envelope Container -->
+    <div class="envelope-container" id="envelopeContainer">
+        <div class="envelope-wrapper">
+            <div class="envelope" onclick="openEnvelope()">
+                <div class="envelope-flap"></div>
+                <div class="envelope-label">Click Me</div>
+                <div class="click-instruction">💌 Open your Valentine's Day surprise 💌</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Letter Container -->
+    <div class="letter-container" id="letterContainer">
+        <div class="container">
+            <div class="header">
+                <div class="heart">💕</div>
+                <h1>Happy Valentine's Day</h1>
+                <p>To My Beautiful Wife</p>
+            </div>
+
+            <div class="content">
+                <div class="letter-text">
+                    <div class="salutation">Hi Mahal,</div>
+
+                    <div class="decorative-line"></div>
+
+                    <p>
+                        Happy Valentine's Day ❤️
+                    </p>
+
+                    <p>
+                        I want you to know how truly thankful I am to have a wife like you. I am so lucky to have you in my life, and I'm especially grateful for the patience you've shown me, even with everything from my past. I don't know how I can ever repay you for all the things you've done for me. All I know right now is that I am ready to be your husband as soon as possible. I want to marry you and spend the rest of my life by your side.
+                    </p>
+
+                    <p>
+                        We've faced so many problems together, but no matter what, we always find a way to fix them. That's what makes our love so strong. My heart feels so full because I have you. I love you more than I could ever properly put into words. You are my sunshine on the darkest days, my comfort when everything feels like it's falling apart, and the biggest reason behind my smile.
+                    </p>
+
+                    <div class="photos-gallery">
+                        <div class="photo-frame">
+                            <img src="photo1.jpg" alt="Our memories together">
+                        </div>
+                        <div class="photo-frame">
+                            <img src="photo2.jpg" alt="Our beautiful moments">
+                        </div>
+                        <div class="photo-frame">
+                            <img src="photo3.jpg" alt="Us forever">
+                        </div>
+                    </div>
+
+                    <p>
+                        You're not just my love, you're my safe place, my person. You're the one I want to tell everything to, the one I want to hold at the end of every long day, and the one I want beside me in every chapter of my life. With you, I've found a love that is pure, honest, and grows deeper and stronger every single day.
+                    </p>
+
+                    <p>
+                        Thank you for being patient with me, for believing in me when I struggle to believe in myself, and for loving me the way you do. I am so incredibly lucky to have you. I choose you every day, and I will keep choosing you over and over again.
+                    </p>
+
+                    <p>
+                        I love you endlessly. You are my today, my tomorrow, and every beautiful moment in between. Please stay close to me always—I can't imagine this life without you. ❤️
+                    </p>
+
+                    <div class="decorative-line"></div>
+
+                    <div class="wax-seal">❤️</div>
+
+                    <div class="signature">
+                        Your Love,
+                        <div class="signature-line">Your i3 still loving you always</div>
+                        <div class="signature-line">✧ Valentine's Day, 2026 ✧</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p class="footer-text">
+                    Written with love and delivered straight from my heart 💌
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openEnvelope() {
+            // Hide envelope
+            document.getElementById('envelopeContainer').classList.add('hidden');
+            
+            // Show flowers transition
+            const flowersTransition = document.getElementById('flowersTransition');
+            flowersTransition.classList.add('active');
+            
+            // After 2.5 seconds, show letter and hide flowers
+            setTimeout(() => {
+                flowersTransition.classList.remove('active');
+                document.getElementById('letterContainer').classList.add('visible');
+            }, 2500);
+        }
+    </script>
 </body>
 </html>
